@@ -5,11 +5,14 @@ import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import{UsersService} from './users/users.service'
 import { JwtService } from '@nestjs/jwt';
+import {MongooseModule} from "@nestjs/mongoose";
+import {UsersRepository} from "./users/users.repository";
 
 @Module({
-  imports: [UsersModule, ProductsModule, AuthModule],
+  imports: [UsersModule, ProductsModule, AuthModule,MongooseModule.forRoot('mongodb://localhost/nestDB')],
   controllers: [AppController],
-  providers: [AuthService, AppService, JwtService],
+  providers: [AuthService, AppService, JwtService,UsersService,UsersRepository],
 })
 export class AppModule {}

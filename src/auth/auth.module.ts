@@ -15,7 +15,7 @@ import { SessionSerializer } from './session.serializer';
       // secret: 'SECRET', //put envirement variables
       signOptions: { expiresIn: '60s' },
       secret: process.env.JWT_SECRET,
-    }),
+    })
   ],
   providers: [AuthService, LocalStrategy],
   exports: [AuthService],
