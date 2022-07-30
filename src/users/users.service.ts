@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {successResult} from "../helper/success-result";
-import {User} from "./schemas/user.schema";
+import {User} from "../schemas/user.schema";
 import {v4 as uuidv4} from 'uuid'
 import {UsersRepository} from "./users.repository";
 import {count} from "rxjs";

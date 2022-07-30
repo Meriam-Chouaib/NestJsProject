@@ -9,10 +9,17 @@ import{UsersService} from './users/users.service'
 import { JwtService } from '@nestjs/jwt';
 import {MongooseModule} from "@nestjs/mongoose";
 import {UsersRepository} from "./users/users.repository";
+import {Product,ProductSchema} from "./schemas/product.schema";
+import {ProductsService} from "./products/products.service";
+import {ProductsController} from "./products/products.controller";
+import {UserSchema} from "./schemas/user.schema";
+import {UsersController} from "./users/users.controller";
 
 @Module({
-  imports: [UsersModule, ProductsModule, AuthModule,MongooseModule.forRoot('mongodb://localhost/nestDB')],
-  controllers: [AppController],
-  providers: [AuthService, AppService, JwtService,UsersService,UsersRepository],
+  imports: [UsersModule, ProductsModule, AuthModule,MongooseModule.forRoot('mongodb://localhost/nestDB'),
+    MongooseModule.forFeature([{name: 'Product', schema: ProductSchema}]),MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+
+  controllers: [AppController,ProductsController,UsersController],
+  providers: [AuthService, AppService, JwtService,UsersService,UsersRepository,ProductsService],
 })
 export class AppModule {}
